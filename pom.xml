@@ -9,19 +9,17 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-        <!-- general information about your package -->
         <name>renjin-benchmarks</name>
         <description>Using benchmarkR in Renjin</description>
         <url>http://github.com/psolaimani/renjin-benchmarks</url>
+
         <licenses>
-            <!-- add one or more licenses under which the package is released -->
             <license>
                 <name>LGPL</name>
             </license>
         </licenses>
 
         <developers>
-            <!-- add one or more licenses under which the package is released -->
             <developer>
                 <name>Parham Solaimani</name>
             </developer>
@@ -29,11 +27,6 @@
 
 
             <dependencies>
-                <dependency>
-                    <groupId>org.renjin</groupId>
-                    <artifactId>hamcrest</artifactId>
-                    <version>0.8.1893</version>
-                </dependency>
 
                 <dependency>
                     <groupId>org.renjin</groupId>
@@ -41,41 +34,11 @@
                     <version>1.0-SNAPSHOT</version>
                 </dependency>
 
-                <dependency>
-                    <groupId>org.renjin.cran</groupId>
-                    <artifactId>RMySQL</artifactId>
-                    <version>1.0.48</version>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.renjin.cran</groupId>
-                    <artifactId>MonetDB.R</artifactId>
-                    <version>1.0.48</version>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.renjin.cran</groupId>
-                    <artifactId>ROracle</artifactId>
-                    <version>1.0.48</version>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.renjin.cran</groupId>
-                    <artifactId>RPostgreSQL</artifactId>
-                    <version>1.0.48</version>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.renjin.cran</groupId>
-                    <artifactId>stringr</artifactId>
-                    <version>1.0.0-b210</version>
-                </dependency>
-
-                 <dependency>
-                    <groupId>org.renjin</groupId>
-                    <artifactId>utils</artifactId>
-                    <version>0.8.1893</version>
-                </dependency>
+                    <dependency>
+                        <groupId>org.renjin</groupId>
+                        <artifactId>renjin-cli</artifactId>
+                        <version>0.8.1893</version>
+                    </dependency>
 
             </dependencies>
 
@@ -100,70 +63,43 @@
                 </pluginRepository>
             </pluginRepositories>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <build>
     <plugins>
+
       <plugin>
+
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.4.0</version>
+
         <executions>
+          <execution><!-- Run our version calculation script -->
+            <id>data-download</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${basedir}/download.sh</executable>
+            </configuration>
+          </execution>
+
           <execution>
-
-
+            <id>run-script</id>
             <goals>
               <goal>java</goal>
             </goals>
           </execution>
+
         </executions>
+
         <configuration>
-          <includeProjectDependencies>false</includeProjectDependencies>
-          <includePluginDependencies>true</includePluginDependencies>
-          <executableDependency>
-            <groupId>com.example.myproject</groupId>
-            <artifactId>mylib</artifactId>
-          </executableDependency>
-          <mainClass>com.example.Main</mainClass>
+          <mainClass>org.renjin.cli.Main</mainClass>
           <arguments>
-            <argument>argument1</argument>
-
-
+            <argument>-f ${basedir}/run.R</argument>
           </arguments>
-          <systemProperties>
-            <systemProperty>
-              <key>myproperty</key>
-              <value>myvalue</value>
-            </systemProperty>
-
-
-          </systemProperties>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>com.example.myproject</groupId>
-            <artifactId>mylib</artifactId>
-            <version>1.3.5</version>
-            <type>jar</type>
-          </dependency>
-        </dependencies>
+
       </plugin>
     </plugins>
   </build>

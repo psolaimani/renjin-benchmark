@@ -8,15 +8,7 @@ set.seed(8008)
 require(stats)
 require(rjson)
 ## global vars
-# https://tcga-data.nci.nih.gov/docs/publications/TCGApancan_2014/
-INPUT <- "http://tcga-data.nci.nih.gov/docs/publications/TCGApancan_2014/RPPA_input.csv"
-OUTPUT <- "http://tcga-data.nci.nih.gov/docs/publications/TCGApancan_2014/RPPA_output.csv"
-VERBOSE <- TRUE # print progress?
-# holder for results
-cat("Loading Data\n")
-try(download.file(INPUT, destfile = "rppa.csv", method="internal"))
-
-rppa <- read.csv("rppa.csv",
+rppa <- read.csv("../data/rppa.csv",
                    header=T, stringsAsFactors=F,
                    sep=",", row.names=NULL,
                    blank.lines.skip = TRUE

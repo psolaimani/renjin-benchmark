@@ -9,9 +9,9 @@ library(parallel)
 
 # Set options and variables
 options( srapply_fapply = "parallel", mc.cores = detectCores() )
-annotation_file <- 'mm9_genes.gtf'
-bamfiles <- c( 'D3Q3.bam' )
-#bamfiles <- c( 'D2Q2.bam', 'D2Q3.bam','D3Q2.bam', 'D3Q3.bam' )
+annotation_file <- '../data/mm9_genes.gtf'
+bamfiles <- c( '../data/D3Q3.bam' )
+#bamfiles <- c( '../data/D2Q2.bam', '../data/D2Q3.bam','../data/D3Q2.bam', '../data/D3Q3.bam' )
 
 # Read in annotation
 annotation <- read.table( annotation_file, sep = '\t', header = FALSE )
