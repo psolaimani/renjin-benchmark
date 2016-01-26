@@ -11,7 +11,7 @@ if (length(args) > 0) {
 }
 
 
-files = list.files(path = "./scripts/", pattern = ".R$", full.names = TRUE)
+files = list.files(path = "./scripts/", pattern = "rppa.R$", full.names = TRUE)
 
 for (file in files){
 cat(sprintf("benchmarking: %s\n", file))
