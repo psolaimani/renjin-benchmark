@@ -1,3 +1,5 @@
+print("STARTED: run.R")
+
 library("benchmarkR")
 # $R_bin -f run.R --args 10 --use-db --usr=username --pwd=password --conn=jdbc:mysql://location:port/database
 args <- commandArgs(trailingOnly = TRUE)
