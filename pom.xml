@@ -73,6 +73,7 @@
         <version>1.4.0</version>
 
         <executions>
+
           <execution><!-- Run our version calculation script -->
             <id>data-download</id>
             <phase>generate-sources</phase>
@@ -89,17 +90,17 @@
             <goals>
               <goal>java</goal>
             </goals>
+            <configuration>
+              <mainClass>org.renjin.cli.Main</mainClass>
+              <arguments>
+                <argument>-f</argument>
+                <argument>${basedir}/run.R</argument>
+              </arguments>
+            </configuration>
           </execution>
 
         </executions>
 
-        <configuration>
-          <mainClass>org.renjin.cli.Main</mainClass>
-          <arguments>
-            <argument>-f</argument>
-            <argument>${basedir}/run.R</argument>
-          </arguments>
-        </configuration>
 
       </plugin>
     </plugins>
