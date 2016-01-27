@@ -8,7 +8,7 @@ set.seed(8008)
 require(stats)
 require(rjson)
 ## global vars
-rppa <- read.csv("20160126_rppa.csv",
+rppa <- read.csv("data_20160126_rppa.csv",
                    header=T, stringsAsFactors=F,
                    sep=",", row.names=NULL,
                    blank.lines.skip = TRUE
