@@ -94,8 +94,8 @@
             <configuration>
               <mainClass>org.renjin.cli.Main</mainClass>
               <arguments>
-                <argument>-f</argument>
-                <argument>${basedir}/run.R</argument>
+                <argument>-e</argument>
+                <argument>source(${basedir}/run.R)</argument>
               </arguments>
             </configuration>
           </execution>
