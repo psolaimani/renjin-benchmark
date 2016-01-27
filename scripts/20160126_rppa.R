@@ -8,7 +8,7 @@ set.seed(8008)
 require(stats)
 require(rjson)
 ## global vars
-rppa <- read.csv("../data/rppa.csv",
+rppa <- read.csv("20160126_rppa.csv",
                    header=T, stringsAsFactors=F,
                    sep=",", row.names=NULL,
                    blank.lines.skip = TRUE
@@ -87,7 +87,7 @@ do.km <- function(dist_mat){
   cat("Calculating K-means clustering\n")
   require(stats)
   res <- lapply(2:25, FUN = function(i){
-      cat(paste("    >", i, "clusters\n"))}
+      cat(paste("    >", i, "clusters\n"))
       kmeans(dist_mat, algorithm="Hartigan-Wong", centers=i)
     }
   )
@@ -102,7 +102,7 @@ do.km <- function(dist_mat){
   return(res)
 }
 
-}
+
 
 cat("start: do.dist()\n")
 do.dist(input_data=rppa)

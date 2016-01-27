@@ -45,8 +45,8 @@ cd ./scripts/
 #gsutil cp gs://benchmarkr/generate_counts/D3Q3.bam.bai ./;
 #fi
 
-if [ ! -f 20160126_rppa.csv ]; then
-echo 'downloading 0160126_rppa.csv';
+if [ ! -f data_20160126_rppa.csv ]; then
+echo 'downloading data_20160126_rppa.csv';
 	wget http://tcga-data.nci.nih.gov/docs/publications/TCGApancan_2014/RPPA_input.csv;
-	mv RPPA_input.csv 0160126_rppa.csv
+	mv RPPA_input.csv data_20160126_rppa.csv
 fi
