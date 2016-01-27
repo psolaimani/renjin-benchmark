@@ -99,10 +99,10 @@ cat("start: do.dist()\n")
 do.dist(input_data=rppa)
 cat("end: do.dist()\n")
 cat("start: do.hc()\n")
-do.hc(dist_mat=dist_mat)
+#do.hc(dist_mat=dist_mat)
 cat("end: do.hc()\n")
 cat("start: do.km()\n")
-do.km(dist_mat=dist_mat)
+#do.km(dist_mat=dist_mat)
 cat("end: do.km()\n")
 
 # final clean up
