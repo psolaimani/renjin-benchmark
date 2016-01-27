@@ -31,7 +31,7 @@
                 <dependency>
                     <groupId>org.renjin</groupId>
                     <artifactId>benchmarkr</artifactId>
-                    <version>1.01-SNAPSHOT</version>
+                    <version>1.01.1001-SNAPSHOT</version>
                 </dependency>
 
                 <dependency>
