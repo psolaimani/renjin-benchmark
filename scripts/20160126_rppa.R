@@ -1,3 +1,4 @@
+print("LINE[1]")
 # RPPA classification
 # ieuan.clay@gmail.com
 # April 2015
@@ -8,11 +9,10 @@ set.seed(8008)
 require(stats)
 require(rjson)
 ## global vars
-rppa <- read.csv("data_20160126_rppa.csv",
-                   header=T, stringsAsFactors=F,
-                   sep=",", row.names=NULL,
-                   blank.lines.skip = TRUE
-                   )
+rppa <- read.csv("data_20160126_rppa.csv", header=T, stringsAsFactors=F,
+                   sep=",", row.names=NULL, blank.lines.skip = TRUE)
+
+print("LINE[15]")
 
 # drop non-numeric columns
 rows <- rppa$TCGA_ID
@@ -32,6 +32,7 @@ do.dist <- function(input_data){
 }
 
 
+print("LINE[35]")
 ## unsupervised clustering
 do.within.ss <- function(d = NULL, clustering){
   cluster.size <- numeric(0)
@@ -50,38 +51,28 @@ do.within.ss <- function(d = NULL, clustering){
   return(within.cluster.ss)
 }
 
+
+print("LINE[55]")
 do.elbow <- function(df){
   df <- df[ order(df$cluster, decreasing = FALSE) ,]
-  df$delta <- c(
-                df[1:(nrow(df) -1),"within_ss"] - df[2:nrow(df),"within_ss"],
-                0
-  )
+  df$delta <- c(df[1:(nrow(df) -1),"within_ss"] - df[2:nrow(df),"within_ss"],0)
   df$k <- df$cluster-1
   df$smooth <- predict(lm(delta ~ poly((cluster), 4, raw=TRUE), data=df), data.frame(cluster=df$k))
   return(min(which(df$smooth < df[1,"smooth"]/10)))
 }
-
-
 do.hc <- function(dist_mat){
   cat("Calculating Hierarchical clustering\n")
   require(stats)
   res <- hclust(d = dist_mat, method="ward")
   cat("Calculating Hierarchical clustering: cutting tree\n")
-  cuts <- lapply(2:25, FUN = function(i){ # note: 1 cluster => 'Inf' error
-        if (VERBOSE){print(paste("    >", i, "clusters"))}
-        return(data.frame(
-            cluster = i,
-            within_ss = do.within.ss(dist_mat, cutree(res, k=i))
-          ))
-    }
-  )
+  cuts <- lapply(2:25, FUN = function(i){ print(paste("    >", i, "clusters"))
+        return(data.frame(cluster = i, within_ss = do.within.ss(dist_mat, cutree(res, k=i))))})
   best_cut <- do.elbow(do.call("rbind", cuts)) # 8 according to paper
   res <- cutree(res, best_cut)
   res <- data.frame(id=attr(dist_mat, which = "Labels"), cluster=res)
   cat("Calculating Hierarchical clustering: complete\n")
-  return(res)
-}
-
+  return(res)}
+print("LINE[75]")
 # kmeans
 do.km <- function(dist_mat){
   cat("Calculating K-means clustering\n")
@@ -101,7 +92,7 @@ do.km <- function(dist_mat){
   cat("Calculating K-means clustering: complete\n")
   return(res)
 }
-
+print("LINE[95]")
 
 
 cat("start: do.dist()\n")
@@ -117,3 +108,8 @@ cat("end: do.km()\n")
 # final clean up
 rm(list=ls())
 gc()
+
+
+
+
+print("LINE[115]")
