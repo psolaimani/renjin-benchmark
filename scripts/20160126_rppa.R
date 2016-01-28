@@ -1,18 +1,15 @@
-print("LINE[1]")
 # RPPA classification
 # ieuan.clay@gmail.com
 # April 2015
 ### set up session
-rm(list=ls())
 set.seed(8008)
 ## packages
+.libPaths("~/R/libs")
 require(stats)
 require(rjson)
 ## global vars
 rppa <- read.csv("./data_20160126_rppa.csv", header=T, stringsAsFactors=F,
                    sep=",", row.names=NULL, blank.lines.skip = TRUE)
-
-print("LINE[15]")
 
 # drop non-numeric columns
 rows <- rppa$TCGA_ID
@@ -31,8 +28,6 @@ do.dist <- function(input_data){
   cat("Calculating Distance Matrix: complete\n")
 }
 
-
-print("LINE[35]")
 ## unsupervised clustering
 do.within.ss <- function(d = NULL, clustering){
   cluster.size <- numeric(0)
@@ -51,8 +46,6 @@ do.within.ss <- function(d = NULL, clustering){
   return(within.cluster.ss)
 }
 
-
-print("LINE[55]")
 do.elbow <- function(df){
   df <- df[ order(df$cluster, decreasing = FALSE) ,]
   df$delta <- c(df[1:(nrow(df) -1),"within_ss"] - df[2:nrow(df),"within_ss"],0)
@@ -72,7 +65,7 @@ do.hc <- function(dist_mat){
   res <- data.frame(id=attr(dist_mat, which = "Labels"), cluster=res)
   cat("Calculating Hierarchical clustering: complete\n")
   return(res)}
-print("LINE[75]")
+
 # kmeans
 do.km <- function(dist_mat){
   cat("Calculating K-means clustering\n")
@@ -92,24 +85,17 @@ do.km <- function(dist_mat){
   cat("Calculating K-means clustering: complete\n")
   return(res)
 }
-print("LINE[95]")
-
 
 cat("start: do.dist()\n")
 do.dist(input_data=rppa)
 cat("end: do.dist()\n")
 cat("start: do.hc()\n")
-#do.hc(dist_mat=dist_mat)
+do.hc(dist_mat=dist_mat)
 cat("end: do.hc()\n")
 cat("start: do.km()\n")
-#do.km(dist_mat=dist_mat)
+do.km(dist_mat=dist_mat)
 cat("end: do.km()\n")
 
 # final clean up
 rm(list=ls())
 gc()
-
-
-
-
-print("LINE[115]")
