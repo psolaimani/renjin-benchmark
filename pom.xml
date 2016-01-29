@@ -37,7 +37,7 @@
                 <dependency>
                     <groupId>org.renjin</groupId>
                     <artifactId>renjin-cli</artifactId>
-                    <version>0.8.1893</version>
+                    <version>0.8.1895</version>
                 </dependency>
 
             </dependencies>
