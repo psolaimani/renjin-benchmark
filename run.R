@@ -27,7 +27,12 @@ cat(sprintf("finished benchmarking: %s\n", file))
 }
 
 # Get credentials from injected JVM enviroment variables
-conn <- Sys.getenv(c("BENCH_USR", "BENCH_PWD", "BENCH_CONN"))
-benchDBReport( usr = conn[[1]], pwd = conn[[2]], con_str = conn[[3]] )
+BENCH_USR='benchmarkR_user'
+BENCH_PWD='Access4benchmarkR_user'
+BENCH_HOST='173.194.246.104'
+BENCH_DB='benchmarkR'
+BENCH_TYPE='mysql'
+conn <- Sys.getenv(c("BENCH_USR", "BENCH_PWD", "BENCH_HOST", "BENCH_DB", "BENCH_TYPE"))
+benchDBReport( usr = conn[[1]], pwd = conn[[2]], host_address = conn[[3]], db_name = conn[[4]], con_type = conn[[5]] )
 
 benchGetter(target = "benchmarks")
