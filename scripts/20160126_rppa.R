@@ -99,7 +99,7 @@ do.hc <- function(dist_mat){
 
   # determine clustering statistics (within cluster SS), for a range of 'cuts'
   print("Calculating Hierarchical clustering: cutting tree")
-  cuts <- lapply(2:25, FUN = function(idx){ # note: 1 cluster => 'Inf' error
+  cuts <- lapply(2:10, FUN = function(idx){ # note: 1 cluster => 'Inf' error
         print(paste("    >", idx, "clusters"))
         return(data.frame(
                cluster = idx,
@@ -125,7 +125,7 @@ do.km <- function(dist_mat){
   require(stats)
 
   # kmeans clustering for a range of cluster numbers
-  res <- lapply(2:25, FUN = function(i){
+  res <- lapply(2:10, FUN = function(i){
       print(paste("    >", i, "clusters"))
       kmeans(dist_mat, algorithm="Hartigan-Wong", centers=i)
     }
