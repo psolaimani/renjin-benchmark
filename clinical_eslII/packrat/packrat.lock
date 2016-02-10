@@ -29,8 +29,8 @@ Version: 1.01.1016
 GithubRepo: BenchmarkR
 GithubUsername: psolaimani
 GithubRef: master
-GithubSha1: 8ba4b2f3b653107b409ff1fe364e6fca35ee24f1
-Hash: 1749498626925f33d8c624a3e7c9dc77
+GithubSha1: 1c562e214dd6914ceede35fe1f8fb2a9d8bf1463
+Hash: bbcd56564943eb560116dc8cc87af4a8
 Requires: hamcrest
 
 Package: curl

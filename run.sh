@@ -15,7 +15,7 @@ for f in $( find -path './[^.]*' -prune -type d ); do
           cd $f
           echo "R -q -e 'library(packrat); packrat::restore(); library(benchmarkR); runBenchmark();'"
           R -q -e 'library(packrat); packrat::restore();'
-          R -q -e 'library(benchmarkR); runBenchmark();'
+          R -q -e "library(benchmarkR); runBenchmark($2);"
           R -q -e 'print(Sys.getenv(c("BENCH_USR", "BENCH_PWD", "BENCH_HOST", "BENCH_DB", "BENCH_TYPE")))'
           cd ..
           COUNT=$(( $COUNT + 1 ))
